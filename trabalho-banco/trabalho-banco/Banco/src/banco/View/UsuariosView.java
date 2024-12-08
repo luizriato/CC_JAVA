@@ -232,16 +232,20 @@ public class UsuariosView extends javax.swing.JFrame {
         } else {
             connectDAO objcon = new connectDAO();
             usuarios_tela = objcon.pesquisaUsuarioJFBD("USUARIOS", "ID = '" + jTextField1_id.getText() + "'");
+            
             jTextField1_id.setEditable(false);
+            
             jTextField2_senha.setText(usuarios_tela.getSenha());
             jTextField3_numAge.setText(String.valueOf(usuarios_tela.getNumAge()));
             jTextField4_cc.setText(String.valueOf(usuarios_tela.getNumCc()));
             jTextField2_senha.setVisible(true);
             jTextField3_numAge.setVisible(true);
             jTextField4_cc.setVisible(true);
+            
             jLabel2_senha.setVisible(true);
             jLabel3_numAge.setVisible(true);
             jLabel4_cc.setVisible(true);
+            
             if (operacaoAtivaGlobal.equals("Alterar")) {
                 jButton1_alterar.setVisible(true);
                 jButton1_ler.setVisible(false);
