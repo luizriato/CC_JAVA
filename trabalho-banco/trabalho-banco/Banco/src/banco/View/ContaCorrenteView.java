@@ -221,52 +221,57 @@ public class ContaCorrenteView extends javax.swing.JFrame {
         dados.setNumCc(Long.parseLong(jTextField2_cc.getText().trim()));
         dados.setSaldo(Double.parseDouble(jTextField4_saldo.getText().trim()));
         objcon.alteraRegistoJFBD("CONTACORRENTE", dados.alteradadosSQLValues(), "ID_CLI =" + jTextField3_id.getText());
+        JOptionPane.showMessageDialog(null, "Registro alterado com sucesso!");
     }//GEN-LAST:event_jButton2_alterarActionPerformed
 
     private void jButton1_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1_cadastrarActionPerformed
+        try {
+            ContaCorrente dados = new ContaCorrente();
+            dados.setNumAge(Integer.parseInt(jTextField1_numAge.getText()));
+            dados.setNumCc(Long.parseLong(jTextField2_cc.getText()));
+            dados.setIdCli(Integer.parseInt(jTextField3_id.getText()));
+            dados.setSaldo(Double.parseDouble(jTextField4_saldo.getText()));
 
-        ContaCorrente dados = new ContaCorrente();
-        dados.setNumAge(Integer.parseInt(jTextField1_numAge.getText()));
-        dados.setNumCc(Long.parseLong(jTextField2_cc.getText()));
-        dados.setIdCli(Integer.parseInt(jTextField3_id.getText()));
-        dados.setSaldo(Double.parseDouble(jTextField4_saldo.getText()));
-
-        connectDAO objcon = new connectDAO();
-        objcon.insereRegistroJFBD("ContaCorrente", dados.dadosSQLValuesContaCorrente());
+            connectDAO objcon = new connectDAO();
+            objcon.insereRegistroJFBD("ContaCorrente", dados.dadosSQLValuesContaCorrente());
+            JOptionPane.showMessageDialog(null, "Registro cadastrado com sucesso!");
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Erro de formato de número: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton1_cadastrarActionPerformed
 
     private void jButton3_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3_excluirActionPerformed
         ContaCorrente dados = new ContaCorrente();
         connectDAO objcon = new connectDAO();
         objcon.deletaRegistroJFBD("CONTACORRENTE", "ID_CLI =" + jTextField3_id.getText());
+        JOptionPane.showMessageDialog(null, "Registro excluído com sucesso!");
     }//GEN-LAST:event_jButton3_excluirActionPerformed
 
     private void jButton1_lerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1_lerActionPerformed
         if (jTextField3_id.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Digite o id", "Erro", JOptionPane.ERROR_MESSAGE);
-        }else {
-        connectDAO objcon = new connectDAO();
-        contaCorrente_tela = objcon.pesquisaContaCorrenteJFBD("CONTACORRENTE", "ID_CLI = '" + jTextField3_id.getText() + "'");
-        jTextField1_numAge.setText(String.valueOf(contaCorrente_tela.getNumAge()));
-        jTextField2_cc.setText(String.valueOf(contaCorrente_tela.getNumCc()));
-        jTextField4_saldo.setText(String.valueOf(contaCorrente_tela.getSaldo()));
-
-        jTextField1_numAge.setVisible(true);
-        jTextField2_cc.setVisible(true);
-        jTextField3_id.setVisible(true);
-        jTextField4_saldo.setVisible(true);
-        jLabel1_numAge.setVisible(true);
-        jLabel3_cc.setVisible(true);
-        jLabel4_saldo.setVisible(true);
-        jLabel2_id.setVisible(true);
-        jButton2_alterar.setVisible(false);
-        }
-                if (operacaoAtivaGlobal.equals("Alterar")) {
-            jButton2_alterar.setVisible(true);
-            jButton1_ler.setVisible(false);
         } else {
-            jButton3_excluir.setVisible(true);
-            jButton1_ler.setVisible(false);
+            connectDAO objcon = new connectDAO();
+            contaCorrente_tela = objcon.pesquisaContaCorrenteJFBD("CONTACORRENTE", "ID_CLI = '" + jTextField3_id.getText() + "'");
+            jTextField1_numAge.setText(String.valueOf(contaCorrente_tela.getNumAge()));
+            jTextField2_cc.setText(String.valueOf(contaCorrente_tela.getNumCc()));
+            jTextField4_saldo.setText(String.valueOf(contaCorrente_tela.getSaldo()));
+            jTextField1_numAge.setVisible(true);
+            jTextField2_cc.setVisible(true);
+            jTextField3_id.setVisible(true);
+            jTextField4_saldo.setVisible(true);
+            jLabel1_numAge.setVisible(true);
+            jLabel3_cc.setVisible(true);
+            jLabel4_saldo.setVisible(true);
+            jLabel2_id.setVisible(true);
+            jButton2_alterar.setVisible(false);
+            if (operacaoAtivaGlobal.equals("Alterar")) {
+                jButton2_alterar.setVisible(true);
+                jButton1_ler.setVisible(false);
+            } else {
+                jButton3_excluir.setVisible(true);
+                jButton1_ler.setVisible(false);
+            }
         }
     }//GEN-LAST:event_jButton1_lerActionPerformed
 

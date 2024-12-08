@@ -64,7 +64,7 @@ public class Usuarios {
      String dados = "ID='" + this.getId()+ "',"
             + "SENHA='" + this.getSenha()+ "',"
             + "NUM_AGE='" + this.getNumAge()+ "',"
-            + "NUM_CC='" + this.getNumCc()+ "',";    
+            + "NUM_CC='" + this.getNumCc()+ "'";    
         return dados;
     }
 }

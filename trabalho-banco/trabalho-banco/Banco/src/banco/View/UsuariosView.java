@@ -7,6 +7,7 @@ package banco.View;
 import banco.Dao.Usuarios;
 import banco.Dao.connectDAO;
 import javax.swing.JOptionPane;
+import java.sql.SQLException;
 
 /**
  *
@@ -209,14 +210,19 @@ public class UsuariosView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1_cadastrarActionPerformed
-        Usuarios dados = new Usuarios();
-        dados.setId(jTextField1_id.getText());
-        dados.setSenha(jTextField2_senha.getText());
-        dados.setNumAge(Integer.parseInt(jTextField3_numAge.getText()));
-        dados.setNumCc(Long.parseLong(jTextField4_cc.getText()));
+        try {
+            Usuarios dados = new Usuarios();
+            dados.setId(jTextField1_id.getText());
+            dados.setSenha(jTextField2_senha.getText());
+            dados.setNumAge(Integer.parseInt(jTextField3_numAge.getText()));
+            dados.setNumCc(Long.parseLong(jTextField4_cc.getText()));
 
-        connectDAO objcon = new connectDAO();
-        objcon.insereRegistroJFBD("Usuarios", dados.dadosSQLValuesUsuarios());
+            connectDAO objcon = new connectDAO();
+            objcon.insereRegistroJFBD("Usuarios", dados.dadosSQLValuesUsuarios());
+            JOptionPane.showMessageDialog(null, "Registro cadastrado com sucesso!");
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Erro de formato de número: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton1_cadastrarActionPerformed
 
     private void jButton1_lerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1_lerActionPerformed
@@ -227,19 +233,15 @@ public class UsuariosView extends javax.swing.JFrame {
             connectDAO objcon = new connectDAO();
             usuarios_tela = objcon.pesquisaUsuarioJFBD("USUARIOS", "ID = '" + jTextField1_id.getText() + "'");
             jTextField1_id.setEditable(false);
-
             jTextField2_senha.setText(usuarios_tela.getSenha());
             jTextField3_numAge.setText(String.valueOf(usuarios_tela.getNumAge()));
             jTextField4_cc.setText(String.valueOf(usuarios_tela.getNumCc()));
-
             jTextField2_senha.setVisible(true);
             jTextField3_numAge.setVisible(true);
             jTextField4_cc.setVisible(true);
-            
             jLabel2_senha.setVisible(true);
             jLabel3_numAge.setVisible(true);
             jLabel4_cc.setVisible(true);
-            
             if (operacaoAtivaGlobal.equals("Alterar")) {
                 jButton1_alterar.setVisible(true);
                 jButton1_ler.setVisible(false);
@@ -253,17 +255,23 @@ public class UsuariosView extends javax.swing.JFrame {
     private void jButton1_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1_excluirActionPerformed
         Usuarios dados = new Usuarios();
         connectDAO objcon = new connectDAO();
-        objcon.deletaRegistroJFBD("USuARIOS", "ID =" + jTextField1_id.getText());
+        objcon.deletaRegistroJFBD("USUARIOS", "ID =" + jTextField1_id.getText());
+        JOptionPane.showMessageDialog(null, "Registro excluído com sucesso!");
     }//GEN-LAST:event_jButton1_excluirActionPerformed
 
     private void jButton1_alterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1_alterarActionPerformed
-        Usuarios dados = new Usuarios();
-        connectDAO objcon = new connectDAO();
-        dados.setId(jTextField1_id.getText());
-        dados.setNumAge(Integer.parseInt(jTextField3_numAge.getText()));
-        dados.setNumCc(Long.parseLong(jTextField4_cc.getText()));
-        dados.setSenha(jTextField2_senha.getText());
-        objcon.alteraRegistoJFBD("USUARIOS", dados.alteradadosSQLValues(), "ID =" + jTextField1_id.getText());
+        try {
+            Usuarios dados = new Usuarios();
+            connectDAO objcon = new connectDAO();
+            dados.setId(jTextField1_id.getText());
+            dados.setNumAge(Integer.parseInt(jTextField3_numAge.getText()));
+            dados.setNumCc(Long.parseLong(jTextField4_cc.getText()));
+            dados.setSenha(jTextField2_senha.getText());
+            objcon.alteraRegistoJFBD("USUARIOS", dados.alteradadosSQLValues(), "ID =" + jTextField1_id.getText());
+            JOptionPane.showMessageDialog(null, "Registro alterado com sucesso!");
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Erro de formato de número: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton1_alterarActionPerformed
 
     /**
