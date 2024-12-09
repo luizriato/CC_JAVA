@@ -5,6 +5,7 @@
 package banco.View;
 
 import banco.Dao.Movimentacao;
+import banco.Dao.Agencias;
 import banco.Dao.connectDAO;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -149,7 +150,7 @@ public class MovimentacaoView extends javax.swing.JFrame {
 
         jLabel4_numdoc.setText("Número Documento");
 
-        jLabel5_debcred.setText("Débito/Crédito");
+        jLabel5_debcred.setText("Débido/Crédito");
 
         jLabel6_id.setText("ID");
 
@@ -195,47 +196,59 @@ public class MovimentacaoView extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addComponent(jLabel7_valor)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextField7_valor, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel9_saldo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextField8_saldo, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3_data)
+                            .addComponent(jLabel4_numdoc)
+                            .addComponent(jLabel1_numAge))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField3_numDoc)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3_data)
-                                    .addComponent(jLabel4_numdoc)
-                                    .addComponent(jLabel5_debcred)
-                                    .addComponent(jLabel7_valor)
-                                    .addComponent(jLabel8_complemento)
-                                    .addComponent(jLabel9_saldo)
-                                    .addComponent(jLabel1_numAge))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jTextField1_numAge, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(37, 37, 37)
-                                        .addComponent(jLabel2_cc)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jTextField2_cc, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jTextField9_data, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField3_numDoc)
-                                    .addComponent(jTextField4_debCred, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField5_id)
-                                    .addComponent(jTextField6_complHis)
-                                    .addComponent(jTextField8_saldo)
-                                    .addComponent(jTextField7_valor, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addComponent(jButton1_cadastrar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton1_alterar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton1_excluir)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton1_ler))))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jTextField1_numAge, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(37, 37, 37)
+                                            .addComponent(jLabel2_cc)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jTextField2_cc))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jTextField9_data, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(37, 37, 37)
+                                            .addComponent(jLabel5_debcred)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jTextField4_debCred, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLabel1))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel6_id)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextField5_id, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel8_complemento)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextField6_complHis))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(107, 107, 107)
-                        .addComponent(jLabel1)))
-                .addContainerGap(10, Short.MAX_VALUE))
+                        .addComponent(jButton1_cadastrar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1_alterar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1_excluir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1_ler)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(29, 29, 29))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,36 +265,32 @@ public class MovimentacaoView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField9_data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3_data))
+                    .addComponent(jLabel3_data)
+                    .addComponent(jTextField4_debCred, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5_debcred))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField3_numDoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4_numdoc))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4_debCred, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5_debcred))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField5_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField5_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6_id)
                     .addComponent(jTextField6_complHis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8_complemento))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField7_valor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7_valor))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField8_saldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9_saldo))
+                    .addComponent(jLabel7_valor)
+                    .addComponent(jLabel9_saldo)
+                    .addComponent(jTextField8_saldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1_cadastrar)
                     .addComponent(jButton1_alterar)
                     .addComponent(jButton1_excluir)
                     .addComponent(jButton1_ler))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -290,9 +299,19 @@ public class MovimentacaoView extends javax.swing.JFrame {
     private void jButton1_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1_cadastrarActionPerformed
         Movimentacao dados = new Movimentacao();
         dados.setDataMov(jTextField9_data.getText());
+        Agencias agencia = new Agencias();
+        connectDAO objcon = new connectDAO();
 
         try {
-            dados.setNumAge((int) Long.parseLong(jTextField1_numAge.getText()));
+            int numAge = Integer.parseInt(jTextField1_numAge.getText());
+            agencia = objcon.pesquisaAgenciaJFBD("AGENCIAS", "NUM_AGE = " + numAge);
+
+            if (agencia.getNumAge() == 0) {
+                JOptionPane.showMessageDialog(null, "Agência não encontrada.", "Erro", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            dados.setNumAge(numAge);
             dados.setNumCc(Long.parseLong(jTextField2_cc.getText()));
             dados.setNumDocto(jTextField3_numDoc.getText());
             dados.setDebitoCredito(jTextField4_debCred.getText().charAt(0));
@@ -301,8 +320,8 @@ public class MovimentacaoView extends javax.swing.JFrame {
             dados.setValor(Double.parseDouble(jTextField7_valor.getText()));
             dados.setSaldo(Double.parseDouble(jTextField8_saldo.getText()));
 
-            connectDAO objcon = new connectDAO();
             objcon.insereRegistroJFBD("Movimentacao", dados.dadosSQLValuesMovimentacao());
+            JOptionPane.showMessageDialog(null, "Movimentação cadastrada com sucesso!");
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Erro: Por favor, insira valores numéricos válidos.", "Erro de Conversão", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {

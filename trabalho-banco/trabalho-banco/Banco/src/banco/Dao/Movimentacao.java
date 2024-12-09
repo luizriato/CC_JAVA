@@ -126,7 +126,7 @@ public class Movimentacao {
     }
     
            public String alteradadosSQLValues() {
-        String sqlDateStr = "NULL"; // Valor padrão para data nula
+        String sqlDateStr = ""; // Valor padrão para data nula
 
         if (this.getDataMov() != null) {
             // Converte java.util.Date para java.sql.Date apenas se não for nulo
