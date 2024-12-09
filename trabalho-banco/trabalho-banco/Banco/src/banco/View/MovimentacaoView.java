@@ -6,6 +6,9 @@ package banco.View;
 
 import banco.Dao.Movimentacao;
 import banco.Dao.connectDAO;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -38,7 +41,8 @@ public class MovimentacaoView extends javax.swing.JFrame {
             jTextField6_complHis.setVisible(true);
             jTextField7_valor.setVisible(true);
             jTextField8_saldo.setVisible(true);
-            
+            jTextField9_data.setVisible(true);
+
             jButton1_ler.setVisible(false);
             jButton1_excluir.setVisible(false);
             jButton1_alterar.setVisible(false);
@@ -90,7 +94,7 @@ public class MovimentacaoView extends javax.swing.JFrame {
             jLabel7_valor.setVisible(false);
             jLabel9_saldo.setVisible(false);
             jLabel3_data.setVisible(false);
-            
+
             jTextField2_cc.setEditable(false);
             jTextField3_numDoc.setEditable(false);
             jTextField4_debCred.setEditable(false);
@@ -191,53 +195,50 @@ public class MovimentacaoView extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3_data)
-                            .addComponent(jLabel4_numdoc)
-                            .addComponent(jLabel5_debcred)
-                            .addComponent(jLabel7_valor)
-                            .addComponent(jLabel8_complemento)
-                            .addComponent(jLabel9_saldo)
-                            .addComponent(jLabel1_numAge))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField1_numAge, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(37, 37, 37)
-                                .addComponent(jLabel2_cc)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3_data)
+                                    .addComponent(jLabel4_numdoc)
+                                    .addComponent(jLabel5_debcred)
+                                    .addComponent(jLabel7_valor)
+                                    .addComponent(jLabel8_complemento)
+                                    .addComponent(jLabel9_saldo)
+                                    .addComponent(jLabel1_numAge))
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField2_cc, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jTextField9_data, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3_numDoc)
-                            .addComponent(jTextField4_debCred, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField5_id)
-                            .addComponent(jTextField6_complHis)
-                            .addComponent(jTextField8_saldo)
-                            .addComponent(jTextField7_valor, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jTextField1_numAge, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(37, 37, 37)
+                                        .addComponent(jLabel2_cc)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jTextField2_cc, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jTextField9_data, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField3_numDoc)
+                                    .addComponent(jTextField4_debCred, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField5_id)
+                                    .addComponent(jTextField6_complHis)
+                                    .addComponent(jTextField8_saldo)
+                                    .addComponent(jTextField7_valor, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(jButton1_cadastrar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton1_alterar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton1_excluir)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton1_ler))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1_cadastrar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1_alterar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1_excluir)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1_ler))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(89, 89, 89)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6_id)
+                        .addGap(107, 107, 107)
+                        .addComponent(jLabel1)))
                 .addContainerGap(10, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel6_id)
-                .addGap(172, 172, 172))
             .addGroup(layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(jLabel1)
@@ -316,7 +317,7 @@ public class MovimentacaoView extends javax.swing.JFrame {
             connectDAO objcon = new connectDAO();
             movimentacao_tela = objcon.pesquisaMovimentacaoJFBD("MOVIMENTACAO", "NUM_AGE = '" + jTextField1_numAge.getText() + "'");
             jTextField1_numAge.setEditable(false);
-            
+
             jTextField2_cc.setText(String.valueOf(movimentacao_tela.getNumCc()));
             jTextField9_data.setText(String.valueOf(movimentacao_tela.getDataMov()));
             jTextField3_numDoc.setText(String.valueOf(movimentacao_tela.getNumDocto()));
@@ -363,19 +364,29 @@ public class MovimentacaoView extends javax.swing.JFrame {
     private void jButton1_alterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1_alterarActionPerformed
         Movimentacao dados = new Movimentacao();
         connectDAO objcon = new connectDAO();
-        
-        dados.setNumAge((int) Long.parseLong(jTextField1_numAge.getText())); // Changed to long
-        dados.setNumCc(Long.parseLong(jTextField2_cc.getText()));
-        dados.setDataMov(jTextField9_data.getText());
-        dados.setNumDocto(jTextField3_numDoc.getText());
-        String texto = jTextField4_debCred.getText();
-        char debitoCreditoChar = texto.charAt(0);
-        dados.setDebitoCredito(debitoCreditoChar);
-        dados.setIdHis((int) Long.parseLong(jTextField5_id.getText())); // Changed to long
-        dados.setComplHis(jTextField6_complHis.getText());
-        dados.setValor(Double.parseDouble(jTextField7_valor.getText()));
-        dados.setSaldo(Double.parseDouble(jTextField8_saldo.getText()));
-        objcon.alteraRegistoJFBD("MOVIMENTACAO", dados.alteradadosSQLValues(), "NUM_AGE =" + jTextField1_numAge.getText());
+
+        try {
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            Date date = formatter.parse(jTextField9_data.getText());
+            dados.setNumAge((int) Long.parseLong(jTextField1_numAge.getText()));
+            dados.setNumCc(Long.parseLong(jTextField2_cc.getText()));
+            dados.setDataMov(formatter.format(date));
+            dados.setNumDocto(jTextField3_numDoc.getText());
+            String texto = jTextField4_debCred.getText();
+            char debitoCreditoChar = texto.charAt(0);
+            dados.setDebitoCredito(debitoCreditoChar);
+            dados.setIdHis((int) Long.parseLong(jTextField5_id.getText()));
+            dados.setComplHis(jTextField6_complHis.getText());
+            dados.setValor(Double.parseDouble(jTextField7_valor.getText()));
+            dados.setSaldo(Double.parseDouble(jTextField8_saldo.getText()));
+            objcon.alteraRegistoJFBD("MOVIMENTACAO", dados.alteradadosSQLValues(), "NUM_AGE =" + jTextField1_numAge.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Erro: Por favor, insira valores numéricos válidos.", "Erro de Conversão", JOptionPane.ERROR_MESSAGE);
+        } catch (ParseException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao converter data: " + e.getMessage(), "Erro de Data", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao alterar: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton1_alterarActionPerformed
 
     /**

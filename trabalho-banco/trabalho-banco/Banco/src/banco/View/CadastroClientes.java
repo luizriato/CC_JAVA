@@ -433,7 +433,7 @@ public class CadastroClientes extends javax.swing.JFrame {
     private void jButton2_alterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2_alterarActionPerformed
         Clientes dados = new Clientes();
         connectDAO objcon = new connectDAO();
-        
+
         dados.setIdCli(Integer.parseInt(jTextField1_id.getText()));
         dados.setNomeCli(jTextField2_nome.getText());
         dados.setEndeCli(jTextField3_endereco.getText());
@@ -446,10 +446,17 @@ public class CadastroClientes extends javax.swing.JFrame {
         dados.setFoneCli(jTextField10_fone.getText());
         dados.setCpfCli(jTextField13_cpf.getText());
         String dateString = jTextField14_data.getText(); // Formato esperado: "dd/MM/yyyy"
-        SimpleDateFormat originalFormat = new SimpleDateFormat("dd-MM-yyyy");
-        
+        SimpleDateFormat originalFormat = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            Date date = originalFormat.parse(dateString);
+            dados.setDataNasc(date);
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(null, "Data inválida!", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         objcon.alteraRegistoJFBD("CLIENTES", dados.alteradadosSQLValues(), "ID_CLI =" + jTextField1_id.getText());
-        
+
         jTextField1_id.setText("");
         jTextField2_nome.setText("");
         jTextField3_endereco.setText("");
@@ -475,7 +482,7 @@ public class CadastroClientes extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1_idActionPerformed
 
-    private void jButton1_lerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1_lerActionPerformed
+    private void jButton1_lerActionPerformed(java.awt.event.ActionEvent evt) {                                             
         if (jTextField1_id.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Digite o id", "Erro", JOptionPane.ERROR_MESSAGE);
         } else {
@@ -493,7 +500,7 @@ public class CadastroClientes extends javax.swing.JFrame {
             jTextField9_cep.setText(cliente_tela.getCepCli());
             jTextField10_fone.setText(cliente_tela.getFoneCli());
             jTextField13_cpf.setText(cliente_tela.getCpfCli());
-        jTextField14_data.setText(new SimpleDateFormat("dd/MM/yyyy").format(cliente_tela.getDataNasc()));
+            jTextField14_data.setText(new SimpleDateFormat("dd/MM/yyyy").format(cliente_tela.getDataNasc()));
             jTextField12_cnpj.setText(cliente_tela.getCnpjCli());
 
             jTextField1_id.setVisible(true);
@@ -538,7 +545,7 @@ public class CadastroClientes extends javax.swing.JFrame {
             jTextField14_data.setVisible(true);
             jTextField12_cnpj.setVisible(true);
 
-    }//GEN-LAST:event_jButton1_lerActionPerformed
+        }
         if (operacaoAtivaGlobal.equals("Alterar")) {
             jButton2_alterar.setVisible(true);
             jButton1_ler.setVisible(false);

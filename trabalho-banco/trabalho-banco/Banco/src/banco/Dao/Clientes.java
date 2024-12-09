@@ -21,7 +21,7 @@ public class Clientes {
     private String cepCli;
     private String foneCli;
     private String cpfCli;
-    private java.util.Date dataNasc; // Pode usar java.sql.Date ou LocalDate
+    private java.util.Date dataNasc; 
     private String cnpjCli;
 
     // Getters e Setters

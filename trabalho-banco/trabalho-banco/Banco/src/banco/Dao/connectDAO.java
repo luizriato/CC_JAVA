@@ -381,9 +381,10 @@ public class connectDAO {
         JOptionPane.showMessageDialog(null, "Alteração executada com sucesso");
         
     } catch (SQLException erro) {
+        JOptionPane.showMessageDialog(null, "Alteração não permitida!");
         JOptionPane.showMessageDialog(null, "Erro de conexão, connectDAO - Mensagem => " + erro.getMessage());
-        JOptionPane.showMessageDialog(null, "\nErro de conexão, connectDAO - Estado => " + erro.getSQLState());
-        JOptionPane.showMessageDialog(null, "\nErro de conexão, connectDAO - Código => " + erro.getErrorCode());
+//        JOptionPane.showMessageDialog(null, "\nErro de conexão, connectDAO - Estado => " + erro.getSQLState());
+//        JOptionPane.showMessageDialog(null, "\nErro de conexão, connectDAO - Código => " + erro.getErrorCode());
         Logger.getLogger(connectDAO.class.getName()).log(Level.SEVERE, null, erro);
     } finally {
         try {
@@ -411,9 +412,10 @@ public class connectDAO {
         JOptionPane.showMessageDialog(null, "Registro excluído com sucesso");
         
     } catch (SQLException erro) {
+        JOptionPane.showMessageDialog(null, "Exclusão não permitida!");
         JOptionPane.showMessageDialog(null, "Erro de conexão, connectDAO - Mensagem => " + erro.getMessage());
-        JOptionPane.showMessageDialog(null, "\nErro de conexão, connectDAO - Estado => " + erro.getSQLState());
-        JOptionPane.showMessageDialog(null, "\nErro de conexão, connectDAO - Código => " + erro.getErrorCode());
+//        JOptionPane.showMessageDialog(null, "\nErro de conexão, connectDAO - Estado => " + erro.getSQLState());
+//        JOptionPane.showMessageDialog(null, "\nErro de conexão, connectDAO - Código => " + erro.getErrorCode());
         Logger.getLogger(connectDAO.class.getName()).log(Level.SEVERE, null, erro);
     } finally {
         try {
