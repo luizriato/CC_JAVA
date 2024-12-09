@@ -24,7 +24,7 @@ public class connectDAO {
 
         String caminho = "jdbc:sqlserver://localhost:1433;databaseName=MOV_CONTA_CORRENTE;encrypt=true;trustServerCertificate=true;";
 
-        String usuario = "sa";
+        String usuario = "luiz";
         String senha = ".";
         try {
             con = DriverManager.getConnection(caminho, usuario, senha);

@@ -112,10 +112,10 @@ public class Movimentacao {
                                 this.getNumCc() + "','" +
                                 sqlDateStr + "','" +
                                 this.getNumDocto() + "','" +
-                                this.getDebitoCredito() + "'," +
-                                this.getIdHis() + ",'" +
-                                this.getComplHis() + "'," +
-                                this.getValor() + "," +
+                                this.getDebitoCredito() + "','" +
+                                this.getIdHis() + "','" +
+                                this.getComplHis() + "','" +
+                                this.getValor() + "','" +
                                 this.getSaldo() + "'";
 
     return dados_movimentacao;
