@@ -65,8 +65,7 @@ public class ContaCorrente {
     public String alteradadosSQLValues() {
 
         String dados
-                = "ID_CLI='" + this.getIdCli() + "',"
-                + "SALDO='" + this.getSaldo() + "'"; // Removed trailing comma
+                = "SALDO='" + this.getSaldo() + "'"; // Removed trailing comma
 
         return dados;
     }

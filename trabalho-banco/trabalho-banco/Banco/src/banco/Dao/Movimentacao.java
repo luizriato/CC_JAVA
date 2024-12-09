@@ -108,15 +108,15 @@ public class Movimentacao {
         java.sql.Date sqlDate = new java.sql.Date(this.getDataMov().getTime());
         sqlDateStr = "'" + sqlDate + "'"; // Data formatada para o SQL
     }
-    String dados_movimentacao = this.getNumAge() + ", " +
-                                this.getNumCc() + ", '" +
-                                sqlDateStr + "', '" +
-                                this.getNumDocto() + "', '" +
-                                this.getDebitoCredito() + "', " +
-                                this.getIdHis() + ", '" +
-                                this.getComplHis() + "', " +
-                                this.getValor() + ", " +
-                                this.getSaldo();
+    String dados_movimentacao = this.getNumAge() + ",'" +
+                                this.getNumCc() + "','" +
+                                sqlDateStr + "','" +
+                                this.getNumDocto() + "','" +
+                                this.getDebitoCredito() + "'," +
+                                this.getIdHis() + ",'" +
+                                this.getComplHis() + "'," +
+                                this.getValor() + "," +
+                                this.getSaldo() + "'";
 
     return dados_movimentacao;
 }

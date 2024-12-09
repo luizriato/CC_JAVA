@@ -45,7 +45,9 @@ public class ContaCorrenteView extends javax.swing.JFrame {
             jButton2_alterar.setVisible(false);
         }
         operacao = "Alterar";                                   // defini a operação como Alterar os dados de um registro
-        if (operacaoAtiva.equals(operacao)) {                  // para alteração deverá ser setado todos os componentes como false para não visualizar
+        if (operacaoAtiva.equals(operacao)) {      
+            jTextField1_numAge.setEditable(false);
+            jTextField2_cc.setEditable(false);
             jTextField1_numAge.setVisible(false);
             jTextField2_cc.setVisible(false);
             jTextField3_id.setVisible(true);
@@ -218,7 +220,6 @@ public class ContaCorrenteView extends javax.swing.JFrame {
     private void jButton2_alterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2_alterarActionPerformed
         ContaCorrente dados = new ContaCorrente();
         connectDAO objcon = new connectDAO();
-        dados.setNumCc(Long.parseLong(jTextField2_cc.getText().trim()));
         dados.setSaldo(Double.parseDouble(jTextField4_saldo.getText().trim()));
         objcon.alteraRegistoJFBD("CONTACORRENTE", dados.alteradadosSQLValues(), "ID_CLI =" + jTextField3_id.getText());
         JOptionPane.showMessageDialog(null, "Registro alterado com sucesso!");
