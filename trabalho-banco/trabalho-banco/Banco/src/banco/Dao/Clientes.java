@@ -134,7 +134,7 @@ public class Clientes {
     }
 
     public String dadosSQLValues() {
-        String sqlDateStr = "NULL"; // Valor padrão para data nula
+        String sqlDateStr = ""; // Valor padrão para data nula
 
         if (this.getDataNasc() != null) {
             // Converte java.util.Date para java.sql.Date apenas se não for nulo

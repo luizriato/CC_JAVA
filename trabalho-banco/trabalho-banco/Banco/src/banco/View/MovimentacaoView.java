@@ -298,7 +298,16 @@ public class MovimentacaoView extends javax.swing.JFrame {
 
     private void jButton1_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1_cadastrarActionPerformed
         Movimentacao dados = new Movimentacao();
-        dados.setDataMov(jTextField9_data.getText());
+                String dateString = jTextField9_data.getText();
+        SimpleDateFormat originalFormat = new SimpleDateFormat("dd-MM-yyyy");
+
+        try {
+            Date date = originalFormat.parse(dateString);
+            dados.setDataMov(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
         Agencias agencia = new Agencias();
         connectDAO objcon = new connectDAO();
 
@@ -383,14 +392,20 @@ public class MovimentacaoView extends javax.swing.JFrame {
     private void jButton1_alterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1_alterarActionPerformed
         Movimentacao dados = new Movimentacao();
         connectDAO objcon = new connectDAO();
-
         try {
-            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-            Date date = formatter.parse(jTextField9_data.getText());
             dados.setNumAge((int) Long.parseLong(jTextField1_numAge.getText()));
             dados.setNumCc(Long.parseLong(jTextField2_cc.getText()));
-            dados.setDataMov(formatter.format(date));
+            String dateString = jTextField9_data.getText();
+            SimpleDateFormat originalFormat = new SimpleDateFormat("dd-MM-yyyy"); 
+            try {
+                Date date = originalFormat.parse(dateString);
+                dados.setDataMov(date);
+            } catch (ParseException ex) {
+                JOptionPane.showMessageDialog(null, "Data inválida! Use o formato dd-MM-yyyy", "Erro de Formato de Data", JOptionPane.ERROR_MESSAGE);
+                return;
+            } 
             dados.setNumDocto(jTextField3_numDoc.getText());
+
             String texto = jTextField4_debCred.getText();
             char debitoCreditoChar = texto.charAt(0);
             dados.setDebitoCredito(debitoCreditoChar);
@@ -398,11 +413,11 @@ public class MovimentacaoView extends javax.swing.JFrame {
             dados.setComplHis(jTextField6_complHis.getText());
             dados.setValor(Double.parseDouble(jTextField7_valor.getText()));
             dados.setSaldo(Double.parseDouble(jTextField8_saldo.getText()));
+
             objcon.alteraRegistoJFBD("MOVIMENTACAO", dados.alteradadosSQLValues(), "NUM_AGE =" + jTextField1_numAge.getText());
+            JOptionPane.showMessageDialog(null, "Movimentação alterada com sucesso!"); 
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Erro: Por favor, insira valores numéricos válidos.", "Erro de Conversão", JOptionPane.ERROR_MESSAGE);
-        } catch (ParseException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao converter data: " + e.getMessage(), "Erro de Data", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro ao alterar: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }

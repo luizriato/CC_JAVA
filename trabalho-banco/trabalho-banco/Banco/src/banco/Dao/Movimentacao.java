@@ -12,7 +12,7 @@ import java.sql.Date;
 public class Movimentacao {
     private int numAge;
     private long numCc;
-    private Date dataMov; // Pode usar java.sql.Date ou LocalDate
+    private java.util.Date dataMov; // Pode usar java.sql.Date ou LocalDate
     private String numDocto;
     private char debitoCredito;
     private int idHis;
@@ -41,13 +41,8 @@ public class Movimentacao {
         return dataMov;
     }
 
-    public void setDataMov(String dataMov) {
-        try{
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            this.dataMov = (Date) sdf.parse(dataMov); //converte e atribui a variavel data
-        } catch (Exception e) {
-            e.printStackTrace(); // para debugar
-        }
+    public void setDataMov(java.util.Date dataMov) {
+        this.dataMov = dataMov;
     }
 
     public String getNumDocto() {
@@ -128,11 +123,11 @@ public class Movimentacao {
            public String alteradadosSQLValues() {
         String sqlDateStr = ""; // Valor padrão para data nula
 
-        if (this.getDataMov() != null) {
-            // Converte java.util.Date para java.sql.Date apenas se não for nulo
-            java.sql.Date sqlDate = new java.sql.Date(this.getDataMov().getTime());
-            sqlDateStr = "'" + sqlDate + "'"; 
-        }
+    if (this.getDataMov() != null) {
+        // Ensure you're using a consistent date format for SQL
+        SimpleDateFormat sqlDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        sqlDateStr = "'" + sqlDateFormat.format(this.getDataMov()) + "'";
+    }
 
      String dados = "NUM_AGE='" + this.getNumAge()+ "',"
             + "NUM_CC='" + this.getNumCc()+ "',"
