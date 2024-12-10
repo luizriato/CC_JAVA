@@ -340,14 +340,14 @@ public class MovimentacaoView extends javax.swing.JFrame {
 
     private void jButton1_lerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1_lerActionPerformed
         if (jTextField1_numAge.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Digite o id", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Digite o número da agência", "Erro", JOptionPane.ERROR_MESSAGE);
         } else {
             connectDAO objcon = new connectDAO();
             movimentacao_tela = objcon.pesquisaMovimentacaoJFBD("MOVIMENTACAO", "NUM_AGE = '" + jTextField1_numAge.getText() + "'");
             jTextField1_numAge.setEditable(false);
 
             jTextField2_cc.setText(String.valueOf(movimentacao_tela.getNumCc()));
-            jTextField9_data.setText(String.valueOf(movimentacao_tela.getDataMov()));
+            jTextField9_data.setText(new SimpleDateFormat("dd/MM/yyyy").format(movimentacao_tela.getDataMov()));
             jTextField3_numDoc.setText(String.valueOf(movimentacao_tela.getNumDocto()));
             jTextField4_debCred.setText(String.valueOf(movimentacao_tela.getDebitoCredito()));
             jTextField5_id.setText(String.valueOf(movimentacao_tela.getIdHis()));
@@ -397,14 +397,14 @@ public class MovimentacaoView extends javax.swing.JFrame {
             dados.setNumAge((int) Long.parseLong(jTextField1_numAge.getText()));
             dados.setNumCc(Long.parseLong(jTextField2_cc.getText()));
             String dateString = jTextField9_data.getText();
-            SimpleDateFormat originalFormat = new SimpleDateFormat("dd-MM-yyyy"); 
-            try {
-                Date date = originalFormat.parse(dateString);
-                dados.setDataMov(date);
-            } catch (ParseException ex) {
-                JOptionPane.showMessageDialog(null, "Data inválida! Use o formato dd-MM-yyyy", "Erro de Formato de Data", JOptionPane.ERROR_MESSAGE);
-                return;
-            } 
+            SimpleDateFormat originalFormat = new SimpleDateFormat("dd/MM/yyyy"); 
+        try {
+            Date date = originalFormat.parse(dateString);
+            dados.setDataMov(date);
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(null, "Data inválida!", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
             dados.setNumDocto(jTextField3_numDoc.getText());
 
             String texto = jTextField4_debCred.getText();

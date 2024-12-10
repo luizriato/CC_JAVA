@@ -532,18 +532,7 @@ public class CadastroClientes extends javax.swing.JFrame {
             jLabel12_cnpj.setVisible(true);
             jTextField1_id.setVisible(true);
 
-            jTextField2_nome.setVisible(true);
-            jTextField3_endereco.setVisible(true);
-            jTextField4_numero.setVisible(true);
-            jTextField5_complemento.setVisible(true);
-            jTextField6_bairro.setVisible(true);
-            jTextField7_cidade.setVisible(true);
-            jTextField8_UF.setVisible(true);
-            jTextField9_cep.setVisible(true);
-            jTextField10_fone.setVisible(true);
-            jTextField13_cpf.setVisible(true);
-            jTextField14_data.setVisible(true);
-            jTextField12_cnpj.setVisible(true);
+
 
         }
         if (operacaoAtivaGlobal.equals("Alterar")) {

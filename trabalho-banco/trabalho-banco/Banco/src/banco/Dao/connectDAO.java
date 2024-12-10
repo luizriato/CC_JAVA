@@ -284,7 +284,6 @@ public class connectDAO {
                     movimentacaoReturn = new Movimentacao();
                     movimentacaoReturn.setNumAge(dados.getInt("NUM_AGE"));
                     movimentacaoReturn.setNumCc(dados.getLong("NUM_CC"));
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
                     movimentacaoReturn.setDataMov(dados.getDate("DATA_MOV"));
                     movimentacaoReturn.setNumDocto(dados.getString("NUM_DOCTO"));
                     char debitoCredito = dados.getString("DEBITO_CREDITO").charAt(0);

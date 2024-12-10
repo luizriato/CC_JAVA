@@ -124,8 +124,8 @@ public class Movimentacao {
     public String alteradadosSQLValues() {
         String sqlDateStr = ""; // Valor padrão para data nula
 
-        if (this.getDataMov() != null) {
-            // Ensure you're using a consistent date format for SQL
+        if (this.getDataMov()!= null) {
+            // Converte java.util.Date para java.sql.Date apenas se não for nulo
             java.sql.Date sqlDate = new java.sql.Date(this.getDataMov().getTime());
             sqlDateStr = "'" + sqlDate + "'"; // Data formatada para o SQL
         }
