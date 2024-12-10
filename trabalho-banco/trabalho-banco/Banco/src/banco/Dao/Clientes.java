@@ -21,7 +21,7 @@ public class Clientes {
     private String cepCli;
     private String foneCli;
     private String cpfCli;
-    private java.util.Date dataNasc; 
+    private java.util.Date dataNasc;
     private String cnpjCli;
 
     // Getters e Setters
@@ -159,8 +159,8 @@ public class Clientes {
 
         return dados_clientes;
     }
-    
-        public String alteradadosSQLValues() {
+
+    public String alteradadosSQLValues() {
         String sqlDateStr = ""; // Valor padrão para data nula
 
         if (this.getDataNasc() != null) {
@@ -169,20 +169,20 @@ public class Clientes {
             sqlDateStr = "'" + sqlDate + "'"; // Data formatada para o SQL
         }
 
-     String dados_clientes = "ID_CLI='" + this.getIdCli() + "',"
-            + "NOME_CLI='" + this.getNomeCli() + "',"
-            + "ENDE_CLI='" + this.getEndeCli() + "',"
-            + "NUME_CLI='" + this.getNumeCli() + "',"
-            + "COMPL_CLI='" + this.getComplCli() + "',"
-            + "BAIR_CLI='" + this.getBairCli() + "',"
-            + "CIDA_CLI='" + this.getCidaCli() + "',"
-            + "UF_CLI='" + this.getUfCli() + "',"
-            + "CEP_CLI='" + this.getCepCli() + "',"
-            + "FONE_CLI='" + this.getFoneCli() + "',"
-            + "CPF_CLI='" + this.getCpfCli() + "',"
-            + "DATA_NASC=" + sqlDateStr + ","
-            + "CNPJ_CLI='" + this.getCnpjCli() + "'";
-     
+        String dados_clientes = "ID_CLI='" + this.getIdCli() + "',"
+                + "NOME_CLI='" + this.getNomeCli() + "',"
+                + "ENDE_CLI='" + this.getEndeCli() + "',"
+                + "NUME_CLI='" + this.getNumeCli() + "',"
+                + "COMPL_CLI='" + this.getComplCli() + "',"
+                + "BAIR_CLI='" + this.getBairCli() + "',"
+                + "CIDA_CLI='" + this.getCidaCli() + "',"
+                + "UF_CLI='" + this.getUfCli() + "',"
+                + "CEP_CLI='" + this.getCepCli() + "',"
+                + "FONE_CLI='" + this.getFoneCli() + "',"
+                + "CPF_CLI='" + this.getCpfCli() + "',"
+                + "DATA_NASC=" + sqlDateStr + ","
+                + "CNPJ_CLI='" + this.getCnpjCli() + "'";
+
         return dados_clientes;
     }
 

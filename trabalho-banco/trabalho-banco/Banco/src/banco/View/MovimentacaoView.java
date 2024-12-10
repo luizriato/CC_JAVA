@@ -392,6 +392,7 @@ public class MovimentacaoView extends javax.swing.JFrame {
     private void jButton1_alterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1_alterarActionPerformed
         Movimentacao dados = new Movimentacao();
         connectDAO objcon = new connectDAO();
+        
         try {
             dados.setNumAge((int) Long.parseLong(jTextField1_numAge.getText()));
             dados.setNumCc(Long.parseLong(jTextField2_cc.getText()));
@@ -415,6 +416,17 @@ public class MovimentacaoView extends javax.swing.JFrame {
             dados.setSaldo(Double.parseDouble(jTextField8_saldo.getText()));
 
             objcon.alteraRegistoJFBD("MOVIMENTACAO", dados.alteradadosSQLValues(), "NUM_AGE =" + jTextField1_numAge.getText());
+            
+            jTextField1_numAge.setText("");
+            jTextField2_cc.setText("");
+            jTextField9_data.setText("");
+            jTextField3_numDoc.setText("");
+            jTextField4_debCred.setText("");
+            jTextField5_id.setText("");
+            jTextField6_complHis.setText("");
+            jTextField7_valor.setText("");
+            jTextField8_saldo.setText("");
+            
             JOptionPane.showMessageDialog(null, "Movimentação alterada com sucesso!"); 
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Erro: Por favor, insira valores numéricos válidos.", "Erro de Conversão", JOptionPane.ERROR_MESSAGE);
