@@ -153,8 +153,8 @@ public class Clientes {
                 + this.getUfCli() + "','"
                 + this.getCepCli() + "','"
                 + this.getFoneCli() + "','"
-                + this.getCpfCli() + "',"
-                + sqlDateStr + ",'" // Data pode ser NULL ou a data formatada
+                + this.getCpfCli() + "','"
+                + sqlDateStr + "','" // Data pode ser NULL ou a data formatada
                 + this.getCnpjCli() + "'";
 
         return dados_clientes;
